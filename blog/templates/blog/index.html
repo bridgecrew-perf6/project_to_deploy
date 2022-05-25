@@ -1,0 +1,42 @@
+{% extends 'blog/main.html' %}
+{% block content %}
+    <!-- Blog Entries Column -->
+    <div class="col-md-8">
+
+        <h1 class="page-header">
+            Page Heading
+            <small>Secondary Text</small>
+        </h1>
+
+        <!-- First Blog Post -->
+        {% for post in posts %}
+            <h2>
+                <a href="{% url 'blog:post' post.pk %}">{{ post.title }}</a>
+            </h2>
+            <p class="lead">
+                by <a href="{% url 'blog:index' %}">Start Bootstrap</a>
+            </p>
+            <p><span class="glyphicon glyphicon-time"></span> Posted on {{ post.created|date:'M d, Y' }}
+                at {{ post.created|time:'HH:mm' }}</p>
+            <hr>
+            <img class="img-responsive" src="http://via.placeholder.com/900x300" alt="">
+            <hr>
+            <p>{{ post.content }}</p>
+            <a class="btn btn-primary" href="{% url 'blog:post' post.pk %}">Read More <span
+                    class="glyphicon glyphicon-chevron-right"></span></a>
+
+            <hr>
+        {% endfor %}
+
+        <!-- Pager -->
+        <ul class="pager">
+            <li class="previous">
+                <a href="#">&larr; Older</a>
+            </li>
+            <li class="next">
+                <a href="#">Newer &rarr;</a>
+            </li>
+        </ul>
+
+    </div>
+{% endblock %}
